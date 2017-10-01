@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 import java.util.Random;
 
 public class MainFrame extends JFrame {
-    private int bulletx, bullety;
+    private int bulletx, bullety,shooterx;
     private int count=0;
     private ImageIcon img=new ImageIcon("ene.png");
     private ImageIcon img2=new ImageIcon("shooter.jpg");
@@ -17,13 +17,14 @@ public class MainFrame extends JFrame {
     private Button btnExit = new Button("Exit");
     private Button btnRight = new Button("Right");
     private Button btnFire = new Button("Fire");
+    private Button btnAuto = new Button("Auto");
     private JLabel labEne = new JLabel();
     private JLabel labShooter = new JLabel();
     private JLabel labBullet = new JLabel();
     private JLabel labCount = new JLabel("Hit:"+count);
     private JLabel labScore = new JLabel("Score!!");
     private Random rdm=new Random();
-    private Timer t1;
+    private Timer t1,t2;
     private boolean flag = true;
 
     public MainFrame() {
@@ -71,6 +72,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 labShooter.setLocation(labShooter.getX()-10,labShooter.getY());
+                t2.stop();
             }
         });
         cp.add(btnRight);
@@ -79,6 +81,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 labShooter.setLocation(labShooter.getX()+10,labShooter.getY());
+                t2.stop();
             }
         });
         cp.add(btnFire);
@@ -97,8 +100,18 @@ public class MainFrame extends JFrame {
                 }
             }
         });
+        this.add(btnAuto);
+        btnAuto.setBackground(new Color(76, 182,255));
+        btnAuto.setBounds(325, 300, 50, 30);
+        btnAuto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                t2.start();
+                flag=true;
+            }
+        });
         cp.add(btnExit);
-        btnExit.setBounds(325, 300, 50, 30);
+        btnExit.setBounds(400, 300, 50, 30);
         btnExit.setForeground(new Color(255,255,255));
         btnExit.setBackground(new Color(0,0,0));
         btnExit.addActionListener(new ActionListener() {
@@ -128,6 +141,26 @@ public class MainFrame extends JFrame {
                     t1.stop();
                     labBullet.setLocation(MainFrame.this.getWidth()+20,MainFrame.this.getHeight()+20);
                     labBullet.setVisible(false);
+                }
+
+            }
+        });
+        t2 = new Timer(50, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(flag){
+                    shooterx+=5;
+                    labShooter.setLocation(shooterx, labShooter.getY());
+                    if(shooterx>MainFrame.this.getWidth()-75){
+                        flag=false;
+                    }
+                }
+                else if(!flag){
+                    shooterx-=5;
+                    labShooter.setLocation(shooterx, labShooter.getY());
+                    if(shooterx<0){
+                        flag=true;
+                    }
                 }
 
             }
