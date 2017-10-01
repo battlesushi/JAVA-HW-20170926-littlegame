@@ -37,26 +37,26 @@ public class MainFrame extends JFrame {
         cp.setLayout(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         imgA=img.getImage();
-        imgA=imgA.getScaledInstance(50,50,Image.SCALE_DEFAULT);
+        imgA=imgA.getScaledInstance(50,50,Image.SCALE_DEFAULT);//縮放圖片大小
         img=new ImageIcon(imgA);
         cp.add(labEne);
         labEne.setIcon(img);
         labEne.setBounds(rdm.nextInt(425)+1, 10, 50, 50);
         imgA=img2.getImage();
-        imgA=imgA.getScaledInstance(50,50,Image.SCALE_DEFAULT);
+        imgA=imgA.getScaledInstance(50,50,Image.SCALE_DEFAULT);//縮放圖片大小
         img2=new ImageIcon(imgA);
         cp.add(labShooter);
         labShooter.setIcon(img2);
         labShooter.setBounds(50, 200, 50, 50);
         imgA=img3.getImage();
-        imgA=imgA.getScaledInstance(20,20,Image.SCALE_DEFAULT);
+        imgA=imgA.getScaledInstance(20,20,Image.SCALE_DEFAULT);//縮放圖片大小
         img3=new ImageIcon(imgA);
         cp.add(labBullet);
         labBullet.setIcon(img3);
         labBullet.setBounds(50, 100, 30, 30);
         labBullet.setVisible(false);
         cp.add(labScore);
-        labScore.setFont(new Font("TimesRoman", Font.BOLD, 15));
+        labScore.setFont(new Font("TimesRoman", Font.BOLD, 15));//改變字型
         cp.add(labCount);
         labCount.setFont(new Font("TimesRoman", Font.BOLD, 15));
         labCount.setBounds(25, 290, 50, 50);
@@ -120,7 +120,7 @@ public class MainFrame extends JFrame {
                 System.exit(0);
             }
         });
-        t1 = new Timer(30, new ActionListener() {
+        t1 = new Timer(30, new ActionListener() {//Fire!!
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(bullety>0){
@@ -145,7 +145,7 @@ public class MainFrame extends JFrame {
 
             }
         });
-        t2 = new Timer(50, new ActionListener() {
+        t2 = new Timer(50, new ActionListener() {//Auto move
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(flag){

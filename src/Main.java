@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args) throws Exception{
         MainFrame mFrm=new MainFrame();
         mFrm.setVisible(true);
+        /////////////////////////音樂code    限用wav類音樂檔
         AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File("Touhou.wav"));
         Clip clip = AudioSystem.getClip();
         clip.open(inputStream);
